@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AImpere | Future with AI</title>
+    <link rel="icon" type="image/svg+xml" href="logo_aimpere.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none; /* Disable container selection */
+        }
+
+        body {
+            font: 4vw Times, serif;
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        /* class for header image*/
+        .intro-image-container {
+            position: relative;
+            width: 100%;
+            height: 80vw;
+            max-height: 700px;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .intro-image-container h1{
+            color: #ffffff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 5% 10%;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+
+            z-index: 1;
+        }
+
+        .intro-background-image, .intro-slogan, .intro-logo {
+            position: absolute;
+            object-fit: cover;   
+            height: 100%;
+            width: 100%;
+        }
+
+        .intro-background-image {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .page-content{
+                align-items: center;
+                z-index: 8;
+                justify-content: center; /* Center the content horizontally */
+                align-items: center; /* Center the content vertically */
+
+        }
+
+        .intro-logo{
+            min-width: auto;
+            min-height: 40%;
+            z-index: 1;
+            filter: invert(100%) drop-shadow(0 0 10px rgba(255, 255, 255, 0.7)) ; /* Adjust values as needed */
+        }
+
+        .intro-image-container::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+
+        }
+
+        /* motivationial text relating to aimpere*/
+        .intro-slogan {
+            top: 80%;
+            z-index: 1;
+            color: #fff;
+            text-align: center;
+            position: relative;
+            padding: 0px 10%;
+            white-space: wrap;
+        }
+
+        .blink {
+            animation: blink-animation 1s steps(2, start) infinite;
+        }
+
+        @keyframes blink-animation {
+            to {
+                visibility: hidden;
+            }
+        }
+
+        .container-link {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .bg-color{
+            background-color: hsl(0, 0%, 95%);
+        }
+
+        .boxshadow {
+            margin: 10px;
+
+            box-shadow: -4px 4px 16px rgba(0, 0, 0, 0.1), 4px -4px 8px rgba(255, 255, 255, 2);
+        }
+        .container {
+            width: 34vw;
+            
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #000000;
+            /* box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.05); */
+
+        }
+
+        .container-text{
+            font: 3vw;
+        }
+
+        .container img {
+            max-width: 24vw;
+            margin-top: 10px;
+        }
+
+        .transition-container {
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .transition-container:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+            transform: scale(1.1);
+        }
+
+        .transition-container:hover img {
+            /* filter: invert(100%); */
+            transition: filter 0.3s;
+        }
+
+        .transition-container:hover h2 {
+            transition: color 0.3s;
+        }
+
+        .transition-container:active {
+            background-color: rgba(0, 0, 0, 1);
+        }
+
+        .transition-container:active img {
+            filter: invert(100%); 
+            /* color: white; */
+        }
+        .transition-container:active h2 {
+            color: white;
+            transition: color 0.3s;
+
+        }
+
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 21vw;
+            z-index: 3;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 1), transparent);
+            color: #ffffff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 2vw;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            transition: transform 0.5s ease, color 0.5s ease; 
+        }
+
+        nav ul li a::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0);
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            transition: background-color 0.5s ease;
+        }
+
+        nav ul li a:hover::after {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        nav ul li a:hover {
+            /* transform: scale(1.5); */
+            animation: wiggle 0.2s ease infinite, glow 1s ease infinite alternate;
+        }
+
+        nav ul li a:active {
+            color: #000;
+            transition: none;
+        }
+
+        nav ul li a:active::after {
+            background: rgba(255, 255, 255, 1);
+            transition: none;
+        }
+
+        main {
+            /*padding: 10px;*/
+        }
+
+
+        .journalist-info {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 10px 10%;
+
+        }
+
+        .avatar {
+            width: 22vw;
+            height: 22vw;
+            max-width: 100px;
+            max-height: 100px;
+
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .name {
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .workplace,
+        .date {
+            margin: 5px 0;
+            color: #555;
+        }
+
+
+        .images{
+            display: flex;
+            justify-content: center;
+            position: relative;
+            flex-wrap: wrap;
+            width: 86vw;
+            padding: 5px;
+        }
+
+
+
+        .section-container {
+            display: flex;
+            justify-content: center;
+            position: relative;
+            border-radius: 15px;
+            flex-wrap: wrap;
+        }
+
+        .section-container p {
+            width: 100%;
+        }
+
+        .rectangle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            /* background: linear-gradient(to right,#0000001c,transparent); Adjust color as needed */
+            box-shadow: #000;
+        }
+
+        section {
+            padding: 0px;
+
+        }
+
+        .normal-container {
+            flex-basis: 100%;
+            background: none;
+            box-shadow: none;
+            margin: 10px 30px;
+        }
+
+        .service-class {
+            display: flex;
+            width: 80%; /* Width of the container */
+            padding: 20px;            
+            align-items: left;
+            text-align: left;
+            max-width: 500px;
+        }
+
+        .service-class img {
+            max-width: 40%; /* Adjust max-width as needed */
+            height: auto; /* Maintains aspect ratio */
+            object-fit: cover; /* Ensures the image fits within the container without being squished */
+            margin: 10px; /* Add gap between image and text */
+            box-shadow: -5px 5px 16px #0000006b;
+
+        }
+
+
+        .intro-flex{
+            max-width: 100%;
+        }
+        .intro-flex img{
+            max-width: 100%
+        }
+
+        .news-container {
+            position: relative;
+           
+            overflow: hidden;
+            margin: 20px;
+            height: 50vw; /* Set container height */
+            min-width: 75vw;
+            max-width: 200px;
+        }
+      
+        .news-container img {
+            transition: all 0.3s ease-out;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            
+        }
+
+        .news-container p{
+            position: absolute;
+            bottom: 10px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            z-index: 1; 
+            color: white; 
+
+        }
+        
+        .news-container::after {
+            content: "";
+            position: absolute; 
+            bottom: 0; 
+            left: 0;
+            width: 100%;
+            height: 50%; 
+            background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1));
+        }
+
+
+        .news-container:hover img {
+            filter: brightness(50%);
+            scale: 1.1; 
+            transition: 0.3s ;
+        }
+       
+
+        .news-container:active img {
+            filter: brightness(30%); 
+            transition: 0.2s ;
+        } 
+        .news-flex{
+            display: flex;
+            flex-wrap: wrap;
+            text-align: center;
+            justify-items: center;
+            justify-content: center; /* Center items horizontally */
+
+        }
+
+
+        
+        .quote-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin: 7%;
+            color: #666;
+            width: 90%;
+            padding: 10px;
+            border-left: 6px solid #0000002e; /* 2px thick black border */
+
+        }
+
+        .quote-container img{
+            width: 20px;
+            align-self: flex-start; /* Align the image to the left */
+
+        }
+
+        .quote-container p{
+            font-style: italic;
+            
+            font-size: 1.2em;
+            width: 100%; /* Ensure the paragraph takes full width */
+        }
+        .quote-container h6 {
+            align-self: flex-end; /* Align the h6 element to the right */
+        }
+
+
+
+        footer {
+            background: #000000;
+            color: #7d7d7d;
+            text-align: center;
+            padding: 20px;
+        }
+        footer img {
+            transition: all 0.3s ease-out;
+            margin: 5px;
+            height: 7vw;
+            max-height: 30px;
+            filter: invert(50%);
+        }
+
+        footer a{
+            text-decoration: none;
+        }
+
+        footer :hover img {
+            filter: invert(100%);
+            transition: 0.2s;
+
+        }
+
+        .footer-link{
+            transition: all 0.3s ease-out;
+            
+            color: #7d7d7d;
+        }
+
+        .footer-link:hover{
+            color: #ffffff;
+            transition: 0.2s;
+
+        }
+
+        .copy-email {
+            text-decoration: none; /* Underline to indicate it's clickable */
+        }
+
+
+        .separator {
+            margin: 2% 0%; /* Adjust margin spacing as needed */
+            height: 1px; /* Adjust thickness of the line as needed */
+            width: 100%;
+            background: linear-gradient(to right, transparent , #0000005f, transparent ); /* Adjust color and position as needed */
+
+        
+        }
+
+
+        @media screen and (min-width: 480px) {
+            body {
+                font-size: 22px;
+                line-height: 30px;
+                position: relative;
+            }
+
+            header{
+                height: 100px;
+
+            }
+
+            .intro-content {
+                line-height: 1.6;
+                position: relative;
+            }
+            .section-container {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .section-container p {
+                width: 80%;
+                max-width: 700px;
+            }
+
+            .intro-image-container {
+                height: 60vw;
+            }
+            
+
+
+            .normal-container{
+                /* max-width: 600px; */
+            }
+
+            .intro-flex{
+                max-width: 500px
+            }
+
+            .container {
+                width: 140px;
+                
+            }
+            .container-text {
+                font-size: 17px;
+            }
+
+            .container img {
+                max-width: 100px;
+            }
+
+            .quote-container{
+                max-width: 700px;
+            }
+            .news-container {
+                height: 200px; /* Set container height */
+                min-width: 300px;
+
+            }
+
+            .journalist-info {
+                margin: 0 15%;
+                margin-left: 40px;
+            }
+    
+            /* Assuming you want the content within the footer to be displayed horizontally */
+            footer .footer-content {
+                display: flex; /* Use flexbox for horizontal alignment */
+                justify-content: center; /* Center the content horizontally */
+                align-items: center; /* Center the content vertically */
+            }
+
+            /* Optional: Add margin to separate elements */
+            footer .footer-content > * {
+                margin: 0 2%; /* Adjust margin as needed */
+            }
+
+
+        }
+
+        @media screen and (min-width: 800px) {
+            .intro-image-container {
+                height: 600px;
+            }
+
+            .intro-image-container h1{
+                padding: 30px 60px;
+            }
+
+            .intro-flex{
+                max-width: 330px
+            }
+
+            header {
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-color">
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../about/index.html">About</a></li>
+                <li><a href="../../services/index.html">Services</a></li>
+                <li><a href="../../contact/index.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="intro-image-container">
+        <img class="intro-background-image" src="../../images/news/AI-take-over.JPG" alt="Random Image">
+        <div class="intro-slogan">The Future with AI
+                <h5>Will there be jobs for us in the near future?</h5>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="section-container" style="text-align: left;">
+                
+
+            <a href="../../about/Ibrahim-alibrahim/index.html" class="journalist-info container-link" style="width: 100%;">
+                <img src="../../images/about/Ibrahim_avatar.png" alt="Journalist Avatar" class="avatar">
+                <div class="details">
+                    <h2 class="name">Ibrahim Al-Ibrahim</h2>
+                    <p class="workplace">Electrical Engineer at AImpere</p>
+                    <p class="date">Date: Feb 2nd, 2024</p>
+                </div>
+            </a>
+
+            <p style="width: 80%;margin: 20px 50px;">
+
+                As artificial intelligence (AI) continues to revolutionize industries at an unprecedented pace, the question on everyone's mind is: what does this mean for the future of jobs? The rapid emergence of AI technologies has sparked both excitement and anxiety, as the potential for innovation is matched by concerns over widespread layoffs and job displacement.
+
+
+                <br>
+                <br>
+                AI has already made significant inroads into various sectors, from manufacturing and logistics to finance and healthcare. Companies are increasingly adopting AI-driven solutions to enhance efficiency, reduce costs, and improve decision-making processes. For instance, the implementation of AI-powered robots in manufacturing has streamlined production lines, resulting in faster and more precise assembly processes. Similarly, AI algorithms are now capable of analyzing vast amounts of financial data in real-time, identifying trends, and making investment decisions with greater accuracy than ever before.
+
+
+                <br>
+                <br>
+                While these advancements are undoubtedly beneficial for businesses, they come at a cost: the displacement of human workers. In recent years, we have witnessed several high-profile layoffs attributed to the adoption of AI technologies. For example, in 2023, a leading automobile manufacturer announced the layoff of 10,000 workers, citing the integration of AI-powered robotics as a key factor. Similarly, a major bank laid off 5,000 employees as it transitioned to AI-driven customer service platforms and automated trading systems.
+
+
+                <br>
+                <br>
+                Despite the unsettling trend of layoffs, the narrative isn't entirely bleak. AI is also creating new job opportunities that didn't exist a decade ago. The demand for AI specialists, data scientists, and machine learning engineers has surged, as companies seek to harness the power of AI. Additionally, roles that require a blend of human creativity and technical expertise, such as AI ethics consultants and human-AI interaction designers, are emerging.
+
+                <br>
+                <br>
+                To ensure a future where both AI and human employment can coexist harmoniously, several steps need to be taken:
+
+
+                <br>
+                <br>
+                <b>Education and Reskilling:</b> Governments, educational institutions, and corporations must invest in reskilling programs to prepare the workforce for the AI-driven economy. This includes training in data analysis, machine learning, and AI ethics.
+
+
+                <br>
+                <br>
+                <b>Emphasizing Human Skills:</b> As AI takes over repetitive and data-driven tasks, human skills such as creativity, emotional intelligence, and strategic thinking will become increasingly valuable. Fostering these skills will be crucial for future job security.
+
+
+                <br>
+                <br>
+                <b>Policy and Regulation:</b> Policymakers need to establish frameworks that promote ethical AI deployment while ensuring that the benefits of AI are widely distributed. This includes creating safety nets for displaced workers and encouraging businesses to adopt AI in ways that complement human labor.
+
+
+             
+
+                <br>
+                <br>
+                Forward-thinking companies are already taking steps to integrate AI responsibly. At AImpere, for instance, the focus is on using AI to enhance human capabilities rather than replace them. "Our approach is to leverage AI to augment our team's skills, allowing them to focus on higher-value tasks that require human insight and creativity," says Ivan Petrovych, Cyber Security specialist at AImpere. "By doing so, we can deliver exceptional value to our customers while also fostering a dynamic and innovative work environment."
+
+
+                <br>
+                <br>
+                The future with AI is a complex and multifaceted landscape. While there will undoubtedly be challenges, there is also immense potential for positive transformation. By embracing change, investing in education, and fostering a collaborative approach to AI integration, we can create a future where both humans and machines thrive.
+
+
+                <br>
+                <br>
+                The key to navigating this transition is adaptability. By staying informed and proactive, we can ensure that the rise of AI leads to a more prosperous and inclusive future for all.
+                <br>
+                <br>
+                As we move forward, the question isn't whether there will be jobs for us, but how we can prepare ourselves to seize the opportunities that lie ahead.
+   
+
+            </p> 
+
+            <div class="separator"></div>
+                
+
+            <section class="container normal-container">
+                <h2 style="text-align:center;">Other Articles</h2>
+            </section>
+
+            <section  class=" news-flex" >
+
+                <a  href="../../news/wei-join/index.html" class="boxshadow container-link">
+                    <sub><i>Published: August 18<sup>th</sup>, 2023</i></sub>
+                    <section class="news-container" >
+                        <p>Stanford Alumnus Wei Chen</p>
+                        <img src="../../images/about/Wei-chen.png" alt="SVG 6">
+                    </section>
+                    
+
+                </a>
+                <a  href="../../news/job-market/index.html" class="boxshadow container-link">
+                    <sub><i>Published: January 12<sup>th</sup>, 2024</i></sub>
+                    <section class="news-container" >
+                        <p>Job Market in US</p>
+                        <img src="../../images/news/job-market.jpg" alt="SVG 6">
+
+                    </section>
+                </a>
+                <a  href="../../news/Ibrahim_news/index.html" class="boxshadow container-link">
+                    <sub><i>Published: September 16<sup>th</sup>, 2023</i></sub>
+                    <section class="news-container" >
+                        <p>The inspiaring journey of Ibrahim Al-Ibrahim</p>
+                        <img src="../../images/about/Ibrahim_landscape.JPG" alt="SVG 6">
+                    </section>
+                </a>
+            </section>
+
+
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="footer-content">
+        <a  href="../../contact/index.html" class="container-link">
+            <h4 class="footer-link">Contact</h4>
+        </a>
+
+        <a  href="../../about/index.html" class="container-link">
+            <h4 class="footer-link">About</h4>
+        </a>
+
+        <a  href="../../Privacy/Privacy.html" class="container-link">
+            <h4 class="footer-link">Privacy</h4>
+        </a>
+        </div>
+        <br>   
+        <a href="mailto:support@aimpere.com"><p class="copy-email footer-link">support@aimpere.com</p></a>
+
+        <a  href="https://www.linkedin.com/company/ai-mpere/" class="container-link">
+            <img src="../../images/svg/linkedin-icon.svg" alt="linkedin"></img>
+        </a>
+        <!-- <a  href="https://www.youtube.com/" class="container-link">
+            <img src="x.svg" alt="linkedin"></img>
+        </a>
+        <a  href="https://www.youtube.com/" class="container-link">
+            <img src="youtube.svg" alt="linkedin"></img>
+        </a> -->
+
+        <div style="filter: invert(100%);" class="separator"></div>
+        <h6>Copyrighted &copy; 2024 AImpere. All rights reserved.</h6>
+    </footer>
+
+
+    <script>
+        // Define your texts array
+        const texts = [
+            "Smart Currents, Brilliant Future: AImpere Leading the Charge",
+            "Illuminate with Intelligence: AImpere - Leading the Charge",
+            "Amping Up Intelligence: AImpere's AI-driven Electric Future",
+            "Breaking Barriers: AImpere's AI-driven Resistance Solutions",
+            "Current Intelligence: AImpere's AI-infused Electrical Solutions",
+            "AImpere: Surpassing Resistance with Intelligent Currents",
+            "Shaping the Future Grid: AImpere - Intelligent Currents at Work"
+        ];
+
+        // Select text elements
+        const textContainer = document.querySelector('.intro-slogan');
+        const textElement = document.querySelector('.text');
+
+        let index = 0;
+
+        // Function to type text
+        function typeWriter(text, i) {
+            if (i < text.length) {
+                textElement.innerHTML = text.substring(0, i + 1) + '<span class="blink">|</span>'; // Add blinking symbol while typing
+                i++;
+                setTimeout(function () {
+                    typeWriter(text, i);
+                }, 100); // typing speed
+            } else {
+                textElement.innerHTML = text + '<span class="blink">|</span>'; // Add blinking symbol after typing
+                setTimeout(function () {
+                    deleteText(text);
+                }, 2000); // wait 2 seconds before deleting
+            }
+        }
+
+        // Function to delete text
+        function deleteText(text) {
+            let textLength = text.length;
+            if (textLength > 0) {
+                textElement.innerHTML = text.substring(0, textLength - 1) + '<span class="blink">|</span>'; // Add blinking symbol while deleting
+                text = text.substring(0, textLength - 1);
+                setTimeout(function () {
+                    deleteText(text);
+                }, 50); // deleting speed
+            } else {
+                textElement.innerHTML = ''; // Clear the blinking symbol
+                index = (index + 1) % texts.length;
+                setTimeout(function () {
+                    typeWriter(texts[index], 0);
+                }, 1000); // wait 1 second before typing the next text
+            }
+        }
+
+        // Start the typing animation
+        typeWriter(texts[0], 0);
+
+        document.addEventListener('DOMContentLoaded', function () {
+        var copyEmail = document.querySelector('.copy-email');
+        copyEmail.addEventListener('click', function () {
+            var email = this.textContent.trim();
+            var tempInput = document.createElement('input');
+            tempInput.setAttribute('value', email);
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            // alert('Email address copied to clipboard: ' + email);
+        });
+    });
+
+    </script>
+
+</body>
+</html>

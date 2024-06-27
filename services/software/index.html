@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AImpere | Software Design</title>
+    <link rel="icon" type="image/svg+xml" href="logo_aimpere.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none; /* Disable container selection */
+        }
+
+        body {
+            font: 4vw Times, serif;
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        /* class for header image*/
+        .intro-image-container {
+            position: relative;
+            width: 100%;
+            height: 80vw;
+            max-height: 700px;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .intro-image-container h1{
+            color: #ffffff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 5% 10%;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+
+            z-index: 1;
+        }
+
+        .intro-background-image, .intro-slogan, .intro-logo {
+            position: absolute;
+            object-fit: cover;   
+            height: 100%;
+            width: 100%;
+        }
+
+        .intro-background-image {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .page-content{
+                align-items: center;
+                z-index: 8;
+                justify-content: center; /* Center the content horizontally */
+                align-items: center; /* Center the content vertically */
+
+        }
+
+        .intro-logo{
+            min-width: auto;
+            min-height: 40%;
+            z-index: 1;
+            filter: invert(100%) drop-shadow(0 0 10px rgba(255, 255, 255, 0.7)) ; /* Adjust values as needed */
+        }
+
+        .intro-image-container::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+
+        }
+
+        /* motivationial text relating to aimpere*/
+        .intro-slogan {
+            top: 80%;
+            z-index: 1;
+            color: #fff;
+            text-align: center;
+            position: relative;
+            padding: 0px 10%;
+            white-space: wrap;
+        }
+
+        .blink {
+            animation: blink-animation 1s steps(2, start) infinite;
+        }
+
+        @keyframes blink-animation {
+            to {
+                visibility: hidden;
+            }
+        }
+
+        .container-link {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .bg-color{
+            background-color: hsl(0, 0%, 95%);
+        }
+
+        .boxshadow {
+            margin: 10px;
+
+            box-shadow: -4px 4px 16px rgba(0, 0, 0, 0.1), 4px -4px 8px rgba(255, 255, 255, 2);
+        }
+        .container {
+            width: 34vw;
+            
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #000000;
+            /* box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.05); */
+
+        }
+
+        .container-text{
+            font: 3vw;
+        }
+
+        .container img {
+            max-width: 24vw;
+            margin-top: 10px;
+        }
+
+        .transition-container {
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .transition-container:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+            transform: scale(1.1);
+        }
+
+        .transition-container:hover img {
+            /* filter: invert(100%); */
+            transition: filter 0.3s;
+        }
+
+        .transition-container:hover h2 {
+            transition: color 0.3s;
+        }
+
+        .transition-container:active {
+            background-color: rgba(0, 0, 0, 1);
+        }
+
+        .transition-container:active img {
+            filter: invert(100%); 
+            /* color: white; */
+        }
+        .transition-container:active h2 {
+            color: white;
+            transition: color 0.3s;
+
+        }
+
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 21vw;
+            z-index: 3;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 1), transparent);
+            color: #ffffff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 2vw;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            transition: transform 0.5s ease, color 0.5s ease; 
+        }
+
+        nav ul li a::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0);
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            transition: background-color 0.5s ease;
+        }
+
+        nav ul li a:hover::after {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        nav ul li a:hover {
+            /* transform: scale(1.5); */
+            animation: wiggle 0.2s ease infinite, glow 1s ease infinite alternate;
+        }
+
+        nav ul li a:active {
+            color: #000;
+            transition: none;
+        }
+
+        nav ul li a:active::after {
+            background: rgba(255, 255, 255, 1);
+            transition: none;
+        }
+
+        main {
+            /*padding: 10px;*/
+        }
+
+
+
+        .images{
+            display: flex;
+            justify-content: center;
+            position: relative;
+            flex-wrap: wrap;
+            width: 86vw;
+            padding: 5px;
+        }
+
+
+
+        .section-container {
+            display: flex;
+            justify-content: center;
+            position: relative;
+            border-radius: 15px;
+            flex-wrap: wrap;
+        }
+
+        .section-container p {
+            width: 100%;
+        }
+
+        .rectangle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            /* background: linear-gradient(to right,#0000001c,transparent); Adjust color as needed */
+            box-shadow: #000;
+        }
+
+        section {
+            padding: 0px;
+
+        }
+
+        .normal-container {
+            flex-basis: 100%;
+            background: none;
+            box-shadow: none;
+            margin: 10px 30px;
+        }
+
+        .service-class {
+            display: flex;
+            width: 80%; /* Width of the container */
+            padding: 20px;   
+            align-items: left;
+            text-align: left;
+            max-width: 500px;
+        }
+
+        .service-class img {
+            max-width: 40%; /* Adjust max-width as needed */
+            height: auto; /* Maintains aspect ratio */
+            object-fit: cover; /* Ensures the image fits within the container without being squished */
+            margin: 10px; /* Add gap between image and text */
+            box-shadow: -5px 5px 16px #0000006b;
+
+        }
+
+        
+        footer {
+            background: #000000;
+            color: #7d7d7d;
+            text-align: center;
+            padding: 20px;
+        }
+        footer img {
+            transition: all 0.3s ease-out;
+            margin: 5px;
+            height: 7vw;
+            max-height: 30px;
+            filter: invert(50%);
+        }
+
+        footer a{
+            text-decoration: none;
+        }
+
+        footer :hover img {
+            filter: invert(100%);
+            transition: 0.2s;
+
+        }
+
+        .footer-link{
+            transition: all 0.3s ease-out;
+            
+            color: #7d7d7d;
+        }
+
+        .footer-link:hover{
+            color: #ffffff;
+            transition: 0.2s;
+
+        }
+
+        .copy-email {
+            text-decoration: none; /* Underline to indicate it's clickable */
+        }
+
+
+        .separator {
+            margin:  0%; /* Adjust margin spacing as needed */
+            height: 1px; /* Adjust thickness of the line as needed */
+            width: 100%;
+            background: linear-gradient(to right, transparent , #0000005f, transparent ); /* Adjust color and position as needed */
+       
+        }
+
+        .main-text{
+            width: 80%;
+            margin: 20px auto; /* Center the div horizontally */
+            justify-content: center; /* Center child elements horizontally */
+            display: flex;
+        }
+
+        .image-flex{
+            display: block; /* Display the image as a block-level element */
+            width: 100%;
+            height: 80vw; /* Allow the height to adjust proportionally to the width */
+            margin-left: auto;
+            margin-right: auto;
+            object-fit: cover;
+        }
+
+
+        @media screen and (min-width: 480px) {
+            body {
+                font-size: 22px;
+                line-height: 30px;
+
+                position: relative;
+            }
+
+            header{
+                height: 100px;
+
+            }
+
+            .intro-content {
+                line-height: 1.6;
+                position: relative;
+            }
+            .section-container {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .section-container p {
+                width: 100%;
+                max-width: 700px;
+            }
+
+            .intro-image-container {
+                height: 60vw;
+            }
+            
+
+            .container {
+                width: 140px;
+                
+            }
+            .container-text {
+                font-size: 17px;
+            }
+
+            .container img {
+                max-width: 100px;
+            }
+
+            .image-flex{
+                height: 400px;
+            }
+    
+            /* Assuming you want the content within the footer to be displayed horizontally */
+            footer .footer-content {
+                display: flex; /* Use flexbox for horizontal alignment */
+                justify-content: center; /* Center the content horizontally */
+                align-items: center; /* Center the content vertically */
+            }
+
+            /* Optional: Add margin to separate elements */
+            footer .footer-content > * {
+                margin: 0 2%; /* Adjust margin as needed */
+            }
+
+
+        }
+
+        @media screen and (min-width: 800px) {
+            .intro-image-container {
+                height: 600px;
+            }
+
+            .intro-image-container h1{
+                padding: 30px 60px;
+            }
+
+
+            header {
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-color">
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../about/index.html">About</a></li>
+                <li><a href="../../services/index.html">Services</a></li>
+                <li><a href="../../contact/index.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="intro-image-container">
+        <img class="intro-background-image" src="../../images/services/software.png" alt="Random Image">
+        <div class="intro-slogan">Software Design 
+                <h5>Convey Logic into Software</h5>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="section-container" >
+                
+
+
+            <div class="main-text">
+                <p>
+
+                    At AImpere, we understand that software design is the cornerstone of digital innovation and business success. Our comprehensive suite of software design services is tailored to meet your unique needs, from conceptualization to implementation. With a focus on user-centric design, scalability, and reliability, we empower your organization to thrive in today's dynamic digital landscape.
+
+                    <br>
+                    
+                    <img class="images boxshadow image-flex" src="../../images/services/software-break.png" alt="intro image">
+    
+                    <i>Custom Software Development:</i>
+                    <br>
+                    We specialize in developing bespoke software solutions tailored to your specific business requirements. Our team of experienced developers utilizes cutting-edge technologies to deliver high-quality, scalable, and innovative software solutions.
+
+    
+    
+                    <br>
+                    <br>
+                    <i>UI/UX Design</i>
+                    <br>
+                    We prioritize user experience and interface design to create intuitive, visually appealing, and engaging digital experiences. Our UI/UX design experts leverage industry best practices and user feedback to optimize usability and drive customer satisfaction.
+                    
+                    
+                    <br>
+                    <br>
+                    <i>Software Testing and Quality Assurance</i>
+                    <br>
+                    We employ rigorous testing methodologies to ensure the quality, reliability, and performance of your software applications. Our QA experts conduct comprehensive testing at every stage of development to identify and address any issues before deployment.
+
+                    <br>
+                    <br>
+                    <i>DevOps and Continuous Integration/Continuous Deployment (CI/CD)</i>
+                    <br>
+                    We embrace DevOps principles and practices to streamline development processes, improve collaboration, and accelerate time-to-market. Our CI/CD pipelines automate software deployment, enabling rapid and reliable delivery of new features and updates.
+                    <br>
+                    <br>
+                    <i>Software Maintenance and Support</i>
+                    <br>
+                    We provide ongoing maintenance and support services to ensure your software remains secure, up-to-date, and optimized for performance. Our team is available to address any issues, implement updates, and provide technical assistance whenever you need it.
+
+                    
+                    
+    
+                    <br>
+                    <br>
+                    <i>AI and Machine Learning Development</i>
+                    <br>
+                    Our team develops custom AI and machine learning models tailored to your specific business needs, driving innovation and efficiency in your operations.
+                    
+                               
+    
+                    <br>
+                    <br>
+                    <i>Legacy Software Modernization</i>
+                    <br>
+                    We help modernize and upgrade legacy software systems to improve performance, scalability, and maintainability. Our experts assess your existing infrastructure, identify areas for improvement, and implement strategic upgrades to future-proof your software applications.
+    
+                    <br>
+                    <br>
+                    With AImpere's software design services, you can unlock the full potential of digital innovation and drive your business forward. Let us help you transform your ideas into reality with cutting-edge software solutions tailored to your needs and goals.
+        
+    
+                </p> 
+            </div>
+
+            <section style="background-color: hsl(0, 0%, 99%);width: 80%; max-width: 700px;" class="container normal-container">
+            
+                <p style="text-align: center;" class="container normal-container">Interested in this particular service?<br> Don't hesitate to contact us: <a href="mailto:services@aimpere.com" style="color: black;" >services@aimpere.com</a></p> 
+
+            </section>
+            
+            <div class="separator"></div>
+            <section class="container normal-container">
+
+                <h2 style="text-align:center; display: flex;">List of Services</h2>
+            </section>
+
+
+            <a href="../software/index.html" class="service-class boxshadow container-link  transition-container">
+                <img src="../../images/services/software.png" alt="intro image">
+
+                <div >
+                    <h3>Software Design</h3>
+                    <p>User interface design, database navigation, program design ...</p>
+                </div>
+            </a>
+
+            <a href="../data-science/index.html" class="service-class boxshadow container-link  transition-container">
+                <div >
+                    <h3>Data Science</h2>
+                    <p>Predictive modeling, data engineering, machine learning, big data ...</p>
+                </div>
+                <img src="../../images/services/datascience.png" alt="intro image">
+            </a>
+            <div class="separator" style="background:#00000000; margin:0%;"></div>
+
+            <a href="../embedded-devices/index.html" class="service-class boxshadow container-link  transition-container">
+                <img src="../../images/services/embedded-device.png" alt="intro image">
+
+                <div >
+                    <h3>Embedded Devices</h3>
+                    <p>IoT/Medical Devices, Wearable Technology, Smart home, Security ...</p>
+                </div>
+            </a>
+
+            <a href="../circuit/index.html" class="service-class boxshadow container-link  transition-container">
+                <div >
+                    <h3>Electrical Circuitry</h2>
+                    <p>Mixed-Signal Design, RF Design, ASIC Design, Power Management...</p>
+                </div>
+                <img src="../../images/services/circuit.png" alt="intro image">
+            </a>
+
+            <div class="separator" style="background:#00000000; margin:0%;"></div>
+
+            <a href="../signal-processing/index.html" class="service-class boxshadow container-link  transition-container">
+                <img src="../../images/services/signal.png" alt="intro image">
+
+                <div >
+                    <h3>Signal Processing</h3>
+                    <p>Analog/digital, biomedical, Audio, communication ...</p>
+                </div>
+            </a>
+
+            <a href="../web-development/index.html" class="service-class boxshadow container-link  transition-container">
+                <div >
+                    <h3>Website Design</h2>
+                    <p>UX/UI design, Front/back end-devlopment, Web security ...</p>
+                </div>
+                <img src="../../images/services/webdesign.png" alt="intro image">
+            </a>
+
+
+
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="footer-content">
+        <a  href="../../contact/index.html" class="container-link">
+            <h4 class="footer-link">Contact</h4>
+        </a>
+
+        <a  href="../../about/index.html" class="container-link">
+            <h4 class="footer-link">About</h4>
+        </a>
+
+        <a  href="../../Privacy/Privacy.html" class="container-link">
+            <h4 class="footer-link">Privacy</h4>
+        </a>
+        </div>
+        <br>   
+        <a href="mailto:support@aimpere.com"><p class="copy-email footer-link">support@aimpere.com</p></a>
+
+        <a  href="https://www.linkedin.com/company/ai-mpere/" class="container-link">
+            <img src="../../images/svg/linkedin-icon.svg" alt="linkedin"></img>
+        </a>
+        <!-- <a  href="https://www.youtube.com/" class="container-link">
+            <img src="x.svg" alt="linkedin"></img>
+        </a>
+        <a  href="https://www.youtube.com/" class="container-link">
+            <img src="youtube.svg" alt="linkedin"></img>
+        </a> -->
+
+        <div style="filter: invert(100%);" class="separator"></div>
+        <h6>Copyrighted &copy; 2024 AImpere. All rights reserved.</h6>
+    </footer>
+
+    <script>
+        // Define your texts array
+        const texts = [
+            "Smart Currents, Brilliant Future: AImpere Leading the Charge",
+            "Illuminate with Intelligence: AImpere - Leading the Charge",
+            "Amping Up Intelligence: AImpere's AI-driven Electric Future",
+            "Breaking Barriers: AImpere's AI-driven Resistance Solutions",
+            "Current Intelligence: AImpere's AI-infused Electrical Solutions",
+            "AImpere: Surpassing Resistance with Intelligent Currents",
+            "Shaping the Future Grid: AImpere - Intelligent Currents at Work"
+        ];
+
+        // Select text elements
+        const textContainer = document.querySelector('.intro-slogan');
+        const textElement = document.querySelector('.text');
+
+        let index = 0;
+
+        // Function to type text
+        function typeWriter(text, i) {
+            if (i < text.length) {
+                textElement.innerHTML = text.substring(0, i + 1) + '<span class="blink">|</span>'; // Add blinking symbol while typing
+                i++;
+                setTimeout(function () {
+                    typeWriter(text, i);
+                }, 100); // typing speed
+            } else {
+                textElement.innerHTML = text + '<span class="blink">|</span>'; // Add blinking symbol after typing
+                setTimeout(function () {
+                    deleteText(text);
+                }, 2000); // wait 2 seconds before deleting
+            }
+        }
+
+        // Function to delete text
+        function deleteText(text) {
+            let textLength = text.length;
+            if (textLength > 0) {
+                textElement.innerHTML = text.substring(0, textLength - 1) + '<span class="blink">|</span>'; // Add blinking symbol while deleting
+                text = text.substring(0, textLength - 1);
+                setTimeout(function () {
+                    deleteText(text);
+                }, 50); // deleting speed
+            } else {
+                textElement.innerHTML = ''; // Clear the blinking symbol
+                index = (index + 1) % texts.length;
+                setTimeout(function () {
+                    typeWriter(texts[index], 0);
+                }, 1000); // wait 1 second before typing the next text
+            }
+        }
+
+        // Start the typing animation
+        typeWriter(texts[0], 0);
+
+        document.addEventListener('DOMContentLoaded', function () {
+        var copyEmail = document.querySelector('.copy-email');
+        copyEmail.addEventListener('click', function () {
+            var email = this.textContent.trim();
+            var tempInput = document.createElement('input');
+            tempInput.setAttribute('value', email);
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            // alert('Email address copied to clipboard: ' + email);
+        });
+    });
+
+    </script>
+
+</body>
+</html>
