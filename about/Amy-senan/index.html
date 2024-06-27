@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AImpere | About</title>
+    <title>AImpere | Amy Lee</title>
     <link rel="icon" type="image/svg+xml" href="logo_aimpere.svg">
     <style>
         * {
@@ -43,13 +43,12 @@
 
         .intro-background-image, .intro-slogan, .intro-logo {
             position: absolute;
-            object-fit: cover;   
-            height: 100%;
             width: 100%;
+            min-width: 100%;
         }
 
         .intro-background-image {
-            top: 50%;
+            top: 60%;
             left: 50%;
             transform: translate(-50%, -50%);
         }
@@ -238,8 +237,6 @@
             /*padding: 10px;*/
         }
 
-
-
         .images{
             display: flex;
             justify-content: center;
@@ -289,7 +286,7 @@
         .service-class {
             display: flex;
             width: 80%; /* Width of the container */
-            padding: 20px;   
+            padding: 20px;            
             align-items: left;
             text-align: left;
             max-width: 500px;
@@ -304,7 +301,103 @@
 
         }
 
+
+        .intro-flex{
+            max-width: 100%;
+        }
+        .intro-flex img{
+            max-width: 100%
+        }
+
+        .news-container {
+            position: relative;
+           
+            overflow: hidden;
+            margin: 5%;
+            height: 50vw; /* Set container height */
+        }
+      
+        .news-container img {
+            transition: all 0.3s ease-out;
+            height: 100%; 
+            width: auto; 
+            
+        }
+
+        .news-container p{
+            position: absolute;
+            bottom: 10px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            z-index: 1; 
+            color: white; 
+
+        }
         
+        .news-container::after {
+            content: "";
+            position: absolute; 
+            bottom: 0; 
+            left: 0;
+            width: 100%;
+            height: 50%; 
+            background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1));
+        }
+
+
+        .news-container:hover img {
+            filter: brightness(50%);
+            scale: 1.1; 
+            transition: 0.3s ;
+        }
+       
+
+        .news-container:active img {
+            filter: brightness(30%); 
+            transition: 0.2s ;
+        } 
+        .news-flex{
+            display: flex;
+            flex-wrap: wrap;
+            text-align: center;
+            justify-items: center;
+            justify-content: center; /* Center items horizontally */
+
+        }
+
+
+        
+        .quote-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin: 7%;
+            color: #666;
+            width: 90%;
+            padding: 10px;
+            border-left: 6px solid #0000002e; /* 2px thick black border */
+
+        }
+
+        .quote-container img{
+            width: 20px;
+            align-self: flex-start; /* Align the image to the left */
+
+        }
+
+        .quote-container p{
+            font-style: italic;
+            
+            font-size: 1.2em;
+            width: 100%; /* Ensure the paragraph takes full width */
+        }
+        .quote-container h6 {
+            align-self: flex-end; /* Align the h6 element to the right */
+        }
+
+
+
         footer {
             background: #000000;
             color: #7d7d7d;
@@ -347,27 +440,12 @@
 
 
         .separator {
-            margin:  0%; /* Adjust margin spacing as needed */
+            margin: 2% 0%; /* Adjust margin spacing as needed */
             height: 1px; /* Adjust thickness of the line as needed */
             width: 100%;
             background: linear-gradient(to right, transparent , #0000005f, transparent ); /* Adjust color and position as needed */
-       
-        }
 
-        .main-text{
-            width: 80%;
-            margin: 20px auto; /* Center the div horizontally */
-            justify-content: center; /* Center child elements horizontally */
-            display: flex;
-        }
-
-        .image-flex{
-            display: block; /* Display the image as a block-level element */
-            width: 100%;
-            height: 80vw; /* Allow the height to adjust proportionally to the width */
-            margin-left: auto;
-            margin-right: auto;
-            object-fit: cover;
+        
         }
 
 
@@ -375,7 +453,6 @@
             body {
                 font-size: 22px;
                 line-height: 30px;
-
                 position: relative;
             }
 
@@ -394,7 +471,7 @@
             }
 
             .section-container p {
-                width: 100%;
+                width: 80%;
                 max-width: 700px;
             }
 
@@ -402,6 +479,15 @@
                 height: 60vw;
             }
             
+
+
+            .normal-container{
+                /* max-width: 600px; */
+            }
+
+            .intro-flex{
+                max-width: 500px
+            }
 
             .container {
                 width: 140px;
@@ -415,9 +501,15 @@
                 max-width: 100px;
             }
 
-            .image-flex{
-                height: 400px;
+            .quote-container{
+                max-width: 700px;
             }
+            .news-container {
+                height: 200px; /* Set container height */
+
+            }
+
+
     
             /* Assuming you want the content within the footer to be displayed horizontally */
             footer .footer-content {
@@ -438,11 +530,17 @@
             .intro-image-container {
                 height: 600px;
             }
+            .intro-image-container img {
+                max-width: 600px;
+            }
 
             .intro-image-container h1{
                 padding: 30px 60px;
             }
 
+            .intro-flex{
+                max-width: 330px
+            }
 
             header {
             }
@@ -454,146 +552,94 @@
     <header>
         <nav>
             <ul>
-                <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../about/index.html">About</a></li>
-                    <li><a href="../services/index.html">Services</a></li>
-                    <li><a href="../contact/index.html">Contact</a></li>
-                </ul>
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../about/index.html">About</a></li>
+                <li><a href="../../services/index.html">Services</a></li>
+                <li><a href="../../contact/index.html">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <div class="intro-image-container">
-        <img class="intro-background-image" src="../images/about/about.png" alt="Random Image">
-        <div class="intro-slogan">About Us 
-            <h5>AImpere</h5>
-        </div>
+        <img class="intro-background-image" src="../../images/about/Amy-senan.jpeg" alt="Random Image">
+        <div class="intro-slogan">
+            <div>Amy Senan
+                <h5>Chief Information Officer at AImpere</h5>
+            </div>
         </div>
     </div>
 
     <main>
-        <div class="section-container" >
+        <div class="section-container" style="text-align: left;">
                 
-
-
-            <div class="main-text">
-                <p>
-                    
-                    At AImpere, we bring cutting-edge technology and innovative solutions to the forefront of your business. Our expertise spans across various domains including data science, software design, signal processing, embedded devices, electrical circuitry, and web development. We are committed to delivering exceptional value and driving your success with our comprehensive suite of services.
-
-                    <br>
-                    
-                    <br>
-                    Why Choose AImpere?
-
-                    <br>
-                    <br>
-                                    
-    
-                    <i>Innovative Solutions:</i>
-
-                    We harness the power of the latest technologies to develop custom solutions that meet your unique business needs.
-
-
-
-    
-    
-                    <br>
-                    <br>
-                    <i>End-to-End Services</i>
-                    From initial concept to deployment and support, we provide a full spectrum of services to ensure your project's success.
-                    
-                    <br>
-                    <br>
-                    <i>Expert Team</i>
-                    Our team of experienced professionals is dedicated to delivering high-quality, reliable, and efficient solutions.
-                    <br>
-                    <br>
-                    <i>Customer-Centric Approach</i>
-                    At AImpere, you are valuable. We work closely with you to understand your needs and exceed your expectations.
-
-                    <br>
-                    <br>
-                    <i>Scalability and Performance</i>
-                    Our solutions are designed to grow with your business, ensuring optimal performance and reliability at every stage.    
-                    <br>
-                    <br>
-                    Partner with AImpere and experience the future of technology today. Let us help you innovate, optimize, and achieve your business goals.
-
-
-                </p> 
-            </div>
-
-
+            <section style="background-color: hsl(0, 0%, 99%);max-width: 700px;" class="container normal-container">
             
-            <section class="container normal-container">
+                <p sclass="container normal-container">
+                    As the Chief Information Officer at AImpere, Amy Lee brings a unique blend of cultural heritage, technological expertise, and visionary leadership to the team. Her journey from China to a top executive position at AImpere is a testament to her dedication, motivation, and exceptional skills.
+                </p>
 
-                <h2 style="text-align:center; display: flex;">Team</h2>
+            </section>
+            <div class="separator" style="background:#00000000; margin:0%;"></div>
+
+            <p style="width: 80%;margin: 20px 50px;">
+                <i>Early Life and Education</i>
+                <br>
+                <br>
+                Amy Lee was born and raised in Shanghai, China. From a young age, she exhibited a keen interest in technology and problem-solving. Her academic excellence and passion for learning led her to pursue higher education in the United States. Amy earned a Bachelor's degree in Business Administration from <b>Berkley</b> and later, an MBA in finance from the <b>University of Chicago</b>. Her educational background provided her with a solid foundation in both technical and strategic aspects of information systems.
+                <br>
+                <br>
+                <i>Professional Experience</i>
+                <br>
+                <br>
+                <b> IT Security at SecureTech</b>
+                <br>
+                Before joining AImpere, Amy served as a specialist of IT Security at SecureTech. In this role, she was responsible for overseeing the company's cybersecurity initiatives, implementing robust security protocols, and ensuring compliance with industry standards. Her efforts significantly enhanced the company's security posture and protected sensitive data from cyber threats.
+                <br>
+                <br>
+                <b>Senior IT Manager at TechGuard</b>
+                <br>
+                Amy's career began at TechGuard, where she worked as a Senior IT Manager. She led a team of IT professionals in managing the company's information systems, optimizing network infrastructure, and enhancing system performance. Her leadership and technical expertise were instrumental in streamlining IT operations and achieving operational excellence.
+                <br>
+                <br>
+                <b>IT Consultant at Global Solutions</b>
+                <br>
+                As an IT Consultant at Global Solutions, Amy provided strategic guidance to numerous organizations on information technology best practices. She specialized in developing and implementing IT strategies that aligned with business goals, resulting in increased efficiency and productivity for her clients.
+                <br>
+                <br>
+                <i>Domains of Expertise</i>
+                <br>
+                <br>
+                Amy's expertise spans several domains, including <b>cybersecurity</b>, <b>information systems management</b>, <b>IT infrastructure</b>, and <b>strategic planning</b>. Her comprehensive knowledge and experience enable her to drive innovative IT solutions and maintain a secure, efficient technological environment at AImpere.
+                <br>
+                <br>
+                <i>Leadership and Vision</i>
+                <br>
+                <br>
+                At AImpere, Amy is responsible for overseeing the company's information technology strategy and ensuring the security and integrity of its IT infrastructure. Her vision and leadership are critical in navigating the complexities of the digital landscape and leveraging technology to achieve business objectives.
+                <br>
+                <br>
+                <i>Motivation and Inspiration</i>
+                <br>
+                <br>
+                Amy's journey from Shanghai to a top executive role at AImpere is fueled by her unwavering motivation and commitment to excellence. She is passionate about using technology to solve complex problems and drive business success. Her leadership continues to inspire the AImpere team, fostering a culture of innovation, security, and continuous improvement.
+                <br>
+                <br>
+                Amy Lee's impressive background, combined with her dedication to technological advancement and security, makes her an invaluable asset to AImpere. 
+            </p> 
+
+            <div style="width: 100%;"></div>
+            <a href="https://www.linkedin.com/in/amy-senan-15bb742b8/" style="text-align: center;" class="container-link boxshadow container transition-container container-text">
+                <section>
+                    <h2>Linkedin</h2>
+                    <!-- <img src="code.svg" alt="SVG 1"> -->
+                </section>
+            </a>
             </section>
             <div class="separator"></div>
 
-            <section class="container normal-container">
-
-                <h3 style="text-align:center; display: flex;">Management</h3>
-            </section>
-
-            <a href="raj-shanker/index.html" class="service-class boxshadow container-link  transition-container">
-                <img src="../images/about/Raj-shanker.png" alt="intro image">
-
-                <div >
-                    <h3>Raj Shanker</h3>
-                    <p>Vice President at AImpere</p>
-                </div>
-            </a>
-
-            <a href="Amy-senan/index.html" class="service-class boxshadow container-link  transition-container">
-                <div >
-                    <h3>Amy Senan</h2>
-                    <p>Chief Information Officer at AImpere</p>
-                </div>
-                <img src="../images/about/Amy-senan.jpeg" alt="intro image">
-
-            </a>
-            <div class="separator"></div>
-
-            <section class="container normal-container">
-
-                <h3 style="text-align:center; display: flex;">Honorable Members</h3>
-            </section>
-
-            <a href="wei-chen/index.html" class="service-class boxshadow container-link  transition-container">
-                <img src="../images/about/Wei-chen.png" alt="intro image">
-
-                <div >
-                    <h3>Wei Chen</h3>
-                    <p> Communication Manager</p>
-                </div>
-            </a>
-
-            <a href="Ivan-petrovych/index.html" class="service-class boxshadow container-link  transition-container">
-                <div >
-                    <h3>Ivan Petrovych</h2>
-                    <p>Cyber security specialist</p>
-                </div>
-                <img src="../images/about/Ivan-Petrovych.png" alt="intro image">
-            </a>
-
-            <div class="separator" style="background:#00000000"></div>
-
-            <a href="Ibrahim-alibrahim/index.html" class="service-class boxshadow container-link  transition-container">
-                <img src="../images/about/Ibrahim_avatar.png" alt="intro image">
-
-                <div >
-                    <h3>Ibrahim Al-Ibrahim</h3>
-                    <p>Electrical Engineer</p>
-                </div>
-            </a>
-            <div class="separator"></div>
-
-            <section style="background-color: hsl(0, 0%, 99%);width: 80%; max-width: 700px;" class="container normal-container">
+            <section style="background-color: hsl(0, 0%, 99%);max-width: 80%;" class="container normal-container">
             
-                <p style="text-align: center;" class="container normal-container">Interested in this particular service?<br> Don't hesitate to contact us: <a href="mailto:services@aimpere.com" style="color: black;" >services@aimpere.com</a></p> 
+                <p style="text-align: center;" class="container normal-container">Interested in working with this particular professional? Get in touch: <a href="mailto:services@aimpere.com" style="color: black;" >services@aimpere.com</a></p> 
 
             </section>
 
@@ -603,15 +649,15 @@
 
     <footer>
         <div class="footer-content">
-        <a  href="../contact/index.html" class="container-link">
+        <a  href="../../contact/index.html" class="container-link">
             <h4 class="footer-link">Contact</h4>
         </a>
 
-        <a  href="../about/index.html" class="container-link">
+        <a  href="../../about/index.html" class="container-link">
             <h4 class="footer-link">About</h4>
         </a>
 
-        <a  href="../Privacy/Privacy.html" class="container-link">
+        <a  href="../../Privacy/Privacy.html" class="container-link">
             <h4 class="footer-link">Privacy</h4>
         </a>
         </div>
@@ -619,7 +665,7 @@
         <a href="mailto:support@aimpere.com"><p class="copy-email footer-link">support@aimpere.com</p></a>
 
         <a  href="https://www.linkedin.com/company/ai-mpere/" class="container-link">
-            <img src="../images/svg/linkedin-icon.svg" alt="linkedin"></img>
+            <img src="../../images/svg/linkedin-icon.svg" alt="linkedin"></img>
         </a>
         <!-- <a  href="https://www.youtube.com/" class="container-link">
             <img src="x.svg" alt="linkedin"></img>
@@ -631,6 +677,7 @@
         <div style="filter: invert(100%);" class="separator"></div>
         <h6>Copyrighted &copy; 2024 AImpere. All rights reserved.</h6>
     </footer>
+
 
     <script>
         // Define your texts array
